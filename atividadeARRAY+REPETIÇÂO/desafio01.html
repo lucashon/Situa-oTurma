@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01</title>
+</head>
+<body>
+    <main>
+        
+            <h1>Programa Situação </h1>
+            <hr>
+        <section> 
+            <label for="">Nome Aluno(a):</label>
+            <input id="inNome" type="text">  <br> <br>
+            <label for="">1º Nota: </label>
+            <input id="inNota1" type="text">   <br> <br>
+            <label for="">2º Nota: </label>
+            <input id="inNota2" type="text">  <br> <br>
+            <button id="mediaAluno" >Exibir média Aluno</button> 
+            <button id="mediaTurma">Exibir média da Turma</button> 
+        </section>
+        <section>
+            <p id="outMedia"></p>
+            <p id="outSituacao1"></p>
+            <p id="outSituacao2"></p>
+            <p id="outSituacao3"></p>
+            <p id="outSala"></p>
+        </section>
+    </main>
+
+
+    <script>
+
+
+       let media2 = [];
+
+    let botao1 = document.getElementById('mediaAluno')
+       mediaAluno.addEventListener('click', ()=>{
+
+        let nome = document.getElementById('inNome').value
+        let nota1 =parseFloat(document.getElementById('inNota1').value)
+        let nota2 = parseFloat(document.getElementById('inNota2').value)
+        let outMedia = document.getElementById('outMedia')
+        let outSituacao1 = document.getElementById('outSituacao1')
+        let outSituacao2 = document.getElementById('outSituacao2')
+        let outSituacao3 = document.getElementById('outSituacao3')
+
+
+        media1 = (nota1 + nota2)/2
+        media2.push(media1)
+
+        outMedia.innerText = `Media ${media1}`
+        
+        let regex = /^\d+$/
+       let teste1 = regex.test(nota1)
+         let teste2 = regex.test(nota2)
+
+
+   
+    if(teste1 != true || teste2 != true){
+        alert('Digite um valor valido.Reiniciar a página ')    
+    }
+   else{
+        if(nota1 > 10 || nota2 > 10){
+            alert('Nota invalida. A nota digitada precisa der maior ou igual a 10, .Reiniciar a página')
+
+        }
+        else if(media1 >= 7){
+            outSituacao1.innerText = `Parabéns ${nome}! Você foi aprovado(a)!`
+            outSituacao1.style.color = 'blue'
+            // outMedia.textContent = `Média ${media1}`
+            // console.log(`Parabéns ${nome}! Você foi aprovado(a)!`)
+
+        }else  if(media1 < 7 && media1 >= 3){
+            outSituacao2.innerText = `Atemção ${nome}, Você está em recuperação!`
+            outSituacao2.style.color = 'green'
+            // console.log(`Atemção ${nome}, você está em recuperação.`)
+        
+        }else if(media1 < 3){
+            outSituacao3.innerText = `${nome} Você foi reprovado(a)!`
+            outSituacao3.style.color = 'red'            
+            //console.log(`Ops ${nome}, você foi reprovado(a).`)
+
+        }
+    }
+         console.log(`Média das notas: ${media1}`)
+       });
+
+           //FUNÇAO MEDIA TURMA
+    let botao2 = document.getElementById('mediaTurma')
+       mediaTurma.addEventListener('click', ()=>{
+    let outSala = document.getElementById('outSala')
+
+        
+
+       
+        console.log(media2)
+
+        let soma = 0;
+        for(let i = 0; i < media2.length; i++){
+            soma+=media2[i] / media2.length;
+        }
+
+        outSala.innerText = `A Média da sala é: ${soma}`
+
+
+
+
+
+
+    });
+
+    </script>
+
+
+</body>
+</html>
